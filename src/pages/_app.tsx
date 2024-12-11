@@ -10,6 +10,7 @@ import type { Environment } from "@sitecore-search/data";
 import Header from "@/components/Header";
 import { ThemeProvider } from "next-themes";
 import Footer from "@/components/Footer";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [storageLanguage, setStorageLanguage] = useStorage(
@@ -37,6 +38,9 @@ export default function App({ Component, pageProps }: AppProps) {
           <Header />
           <Component {...pageProps} />
           <Footer />
+          <GoogleTagManager
+            gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER || ""}
+          />
         </WidgetsProvider>
       </LanguageContext.Provider>
     </ThemeProvider>
